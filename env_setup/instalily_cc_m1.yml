@@ -26,6 +26,8 @@ dependencies:
   - gdown
   - selenium
   - beautifulsoup4
+  - pymongo
+  - lxml
   - pip:
       - setuptools>=41.2
       - tensorflow-macos==2.11
