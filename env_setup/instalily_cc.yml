@@ -1,0 +1,29 @@
+name: instalily_cc
+
+dependencies:
+  - python=3.10
+  - pip
+  - jupyter
+  - jupyterlab
+  - scikit-learn
+  - scipy
+  - pandas
+  - pandas-datareader
+  - matplotlib=3.5
+  - numpy
+  - pillow
+  - tqdm
+  - h5py
+  - pyyaml
+  - pandoc
+  - ipywidgets
+  - langchain
+  - openai
+  - gdown
+  - selenium
+  - beautifulsoup4
+  - pip:
+      - setuptools>=41.2
+      - tensorflow==2.11
+      - imageio==2.9
+      - kaggle
