@@ -1,6 +1,6 @@
 # Edit the following as needed
-MY_CONDA_ENV_NAME="csci1470"                 # name of the conda environment
-MY_CONDA_ENV_CFG_FILE="env_setup/csci1470-m1.yml" # name/path of the conda environment config file
+MY_CONDA_ENV_NAME="instalily_cc"                 # name of the conda environment
+MY_CONDA_ENV_CFG_FILE="env_setup/instalily_cc_m1.yml" # name/path of the conda environment config file
 
 main() {
     # verify conda is installed
