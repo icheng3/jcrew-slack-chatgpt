@@ -25,9 +25,10 @@ dependencies:
   - openai
   - gdown
   - selenium
-  - beautifulsoup4
+  - scrapy
   - pymongo
   - lxml
+  - webdriver-manager
   - pip:
       - setuptools>=41.2
       - tensorflow-macos==2.11

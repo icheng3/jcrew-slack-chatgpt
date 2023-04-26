@@ -21,7 +21,7 @@ dependencies:
   - openai
   - gdown
   - selenium
-  - beautifulsoup4
+  - scrapy
   - pymongo
   - lxml
   - pip:
