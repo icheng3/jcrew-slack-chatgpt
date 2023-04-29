@@ -1,21 +1,15 @@
-#!/usr/bin/env python3
-import logging
-logger = logging.getLogger(__name__)
 import os
-# from dotenv import load_dotenv
 from pathlib import Path
+from dotenv import load_dotenv
+from app import chatbot
 
-# # Get the folder this file is in:
-# this_file_folder = os.path.dirname(os.path.realpath(__file__))
-# # Get the parent folder of this file's folder:
-# parent_folder = os.path.dirname(this_file_folder)
+curr_folder = os.path.dirname(os.path.realpath(__file__))
+root_folder = os.path.dirname(os.path.dirname(curr_folder))
 
-# load_dotenv(Path(parent_folder) / ".env")
-
-from app import bot
+load_dotenv(Path(root_folder) / ".env")
 
 def main():
-    bot.start()
+    chatbot.start()
 
 if __name__ == "__main__":
     main()

@@ -2,7 +2,7 @@ from langchain.schema import BaseRetriever
 from langchain.vectorstores import VectorStore
 from langchain.schema import Document
 from pydantic import BaseModel
- 
+
 class RedisProductRetriever(BaseRetriever, BaseModel):
     vectorstore: VectorStore
  

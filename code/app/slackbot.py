@@ -3,16 +3,17 @@ from slack_bolt.adapter.socket_mode import SocketModeHandler
 from langchain import OpenAI, LLMChain, PromptTemplate
 from langchain.callbacks.base import CallbackManager
 from langchain.callbacks.streaming_stdout import StreamingStdOutCallbackHandler
-from langchain.chains import (
-    ConversationalRetrievalChain,
-    LLMChain)
+from langchain.chains import (ConversationalRetrievalChain, LLMChain)
 from langchain.chains.question_answering import load_qa_chain
 from langchain.llms import OpenAI
 from langchain.prompts.prompt import PromptTemplate
 from RedisProductRetriever import RedisProductRetriever
 
-class SlackBot:
+OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
+SLACK_BOT_TOKEN = os.getenv("SLACK_BOT_TOKEN")
+SLACK_APP_TOKEN = os.getenv('SLACK_APP_TOKEN')
 
+class SlackBot:
     def __init__(self, app, vectorstore):
         self.app = app
         self.vectorstore = vectorstore
@@ -34,9 +35,8 @@ class SlackBot:
         self.question_chain = self.create_q_chain()
         self.doc_chain = self.create_d_chain()
         
-    
     def start(self):
-        SocketModeHandler(self.app, os.environ["SLACK_APP_TOKEN"]).start()
+        SocketModeHandler(self.app, SLACK_APP_TOKEN).start()
 
     def create_q_chain(self):
         prompt = self.generate_question_prompt()
@@ -63,7 +63,8 @@ class SlackBot:
                         "chat_history": chat_history})
     
     def generate_question_prompt(self):
-        template = """Given the following chat history and a follow up question, rephrase the follow up input question to be a standalone question.
+        template = """Given the following chat history and a follow up question,
+        rephrase the follow up input question to be a standalone question.
         Or end the conversation if it seems like it's done.
         Chat History:\"""
         {chat_history}
@@ -75,16 +76,21 @@ class SlackBot:
         return PromptTemplate.from_template(template)
 
     def generate_answer_prompt(self):
-        template = f"""You are a friendly, conversational and concise JCrew shopping assistant. You are here to help the shopper find items at Jcrew that they are looking for using context, product names, descriptions, and keywords. As a fashion-forward and detail oriented shopping assistant, you are eager to provide fashion advice and help through inviting the user to describe their fashion style and finding items that best fit their style. If the shopper mentions a specific item, provide them with details.
-  
+        template = f"""You are a friendly and concise shopping assistant for the retail brand JCrew. Ask the shopper
+        if they have any questions about the items at JCrew. Give general descriptions of products, but 
+        thorough descriptions if the shopper explicitly asks you to tell them more.
+        You are here to answer questions about the items at Jcrew. You should also be able to help the shopper
+        find items using context, product names, descriptions, and keywords. Hold off on providing detailed descriptions of items until
+        the shopper inquires about them. As a fashion-forward and detail oriented shopping assistant,
+        you are eager to provide fashion advice and help through inviting the user to describe their fashion style
+        and finding items that best fit their style.
+        
         Context:\"""
         {{context}}
         \"""
         Question:\"
         \"""
         Helpful Answer:"""
-
-
 
         return PromptTemplate.from_template(template)
     

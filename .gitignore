@@ -1,4 +1,7 @@
 api_keys.py
 include/
 lib/
-data/
+data/results.json
+data/results1.5.json
+data/results2.json
+.env
