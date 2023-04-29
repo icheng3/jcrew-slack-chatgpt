@@ -24,8 +24,10 @@ dependencies:
   - scrapy
   - pymongo
   - lxml
+  - webdriver-manager
   - pip:
       - setuptools>=41.2
       - tensorflow==2.11
       - imageio==2.9
       - kaggle
+      - slack_bolt

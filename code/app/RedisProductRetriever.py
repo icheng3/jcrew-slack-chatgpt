@@ -1,4 +1,3 @@
-import json
 from langchain.schema import BaseRetriever
 from langchain.vectorstores import VectorStore
 from langchain.schema import Document
@@ -14,8 +13,7 @@ class RedisProductRetriever(BaseRetriever, BaseModel):
         metadata = doc.metadata
         return (
            "Item Name: " + metadata["item_name"] + ". " +
-           "Item Description: " + metadata["bullet_point"] + ". " +
-           "Item Keywords: " + metadata["item_keywords"] + "."
+           "Item Details: " + metadata["description"]
         )
  
     def get_relevant_documents(self, query):
@@ -26,5 +24,4 @@ class RedisProductRetriever(BaseRetriever, BaseModel):
                 page_content=content,
                 metadata=doc.metadata
             ))
- 
         return docs

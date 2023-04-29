@@ -34,3 +34,4 @@ dependencies:
       - tensorflow-macos==2.11
       - imageio==2.9
       - kaggle
+      - slack_bolt
