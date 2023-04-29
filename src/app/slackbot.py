@@ -6,6 +6,7 @@ from langchain.callbacks.streaming_stdout import StreamingStdOutCallbackHandler
 from langchain.chains import (ConversationalRetrievalChain, LLMChain)
 from langchain.chains.question_answering import load_qa_chain
 from langchain.llms import OpenAI
+from langchain.chat_models import ChatOpenAI
 from langchain.prompts.prompt import PromptTemplate
 from RedisProductRetriever import RedisProductRetriever
 
@@ -14,24 +15,37 @@ SLACK_BOT_TOKEN = os.getenv("SLACK_BOT_TOKEN")
 SLACK_APP_TOKEN = os.getenv('SLACK_APP_TOKEN')
 
 class SlackBot:
-    def __init__(self, app, vectorstore):
+    def __init__(self, app, vectorstore, chat:bool):
         self.app = app
         self.vectorstore = vectorstore
         self.retriever = RedisProductRetriever(vectorstore=vectorstore)
         self.client = self.app.client
         self.user_to_info_cache = {}
         self.user_to_chat_history_cache = {}
-        self.llm = OpenAI(temperature=0)
-        self.streaming_llm = OpenAI(
-            streaming=True,
-            callback_manager=CallbackManager([
-            StreamingStdOutCallbackHandler()
-            ]),
-            verbose=False,
-            max_tokens=150,
-            temperature=0.2
+        if chat:
+            self.llm = ChatOpenAI(temperature=0)
+            self.streaming_llm = ChatOpenAI(
+                streaming=True,
+                callback_manager=CallbackManager([
+                StreamingStdOutCallbackHandler()
+                ]),
+                verbose=False,
+                max_tokens=150,
+                temperature=0.2
 
-        )
+            )
+        else:
+            self.llm = OpenAI(temperature=0)
+            self.streaming_llm = OpenAI(
+                streaming=True,
+                callback_manager=CallbackManager([
+                StreamingStdOutCallbackHandler()
+                ]),
+                verbose=False,
+                max_tokens=150,
+                temperature=0.2
+
+            )
         self.question_chain = self.create_q_chain()
         self.doc_chain = self.create_d_chain()
         
