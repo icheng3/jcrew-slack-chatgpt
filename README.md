@@ -62,7 +62,7 @@ Project Link: [https://github.com/icheng3/Instalily-CC-Chatbot/](https://github.
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
-This was my first time working with Langchain (so cool) and I found these resources and repos to be the most helpful in guiding my project.
+Some resources and repos that I found the most helpful in guiding my project!
 * [Learning about Langchain's conversational memory](https://www.pinecone.io/learn/langchain-conversational-memory/)
 * [Redis guide on building an Ecommerce Chatbot](https://redis.com/blog/build-ecommerce-chatbot-with-redis/)
 * [This repo by ibleducation deploying a mentor slack bot for its company](https://github.com/ibleducation/ibl-slack-chatgpt-langchain)
