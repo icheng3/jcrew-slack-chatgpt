@@ -25,8 +25,12 @@ A chatbot hosted on the Slack UI that uses Langchain under the hood to help you 
 
 
 ### Prerequisites
-
-To demo the JCrew chatbot, you will need to create your own Slackbot first. You can find a tutorial [here]( https://slack.dev/bolt-python/tutorial/getting-started)! You will also need an OpenAI account to make API calls to the service. Make one [here](https://platform.openai.com/signup)! 
+- To demo the JCrew chatbot, you will need to create your own Slackbot first. 
+  - You can find a tutorial on how to do so [here]( https://slack.dev/bolt-python/tutorial/getting-started)! 
+- An OpenAI account is required for making API calls to the service
+  - Make one [here](https://platform.openai.com/signup)! 
+- Redis Stack Server will be used for retrieval of product information
+  - Installation [instructions](https://redis.io/docs/stack/get-started/install/) 
 
 ### Installation
 
@@ -38,7 +42,12 @@ To demo the JCrew chatbot, you will need to create your own Slackbot first. You 
     ```sh
    pip install -r requirements.txt
    ```
-3. Copy .env.example to your own .env file and fill in the values for your OpenAI, Slack Bot, and Slack App tokens.
+3. Start a local Redis Stack Server
+    ```sh
+   redis-stack-server
+   ```
+4. Copy .env.example to your own .env file and fill in the values for your OpenAI, Slack Bot, and Slack App tokens. 
+
 
 
 <!-- ROADMAP -->
