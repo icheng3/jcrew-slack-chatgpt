@@ -4,6 +4,7 @@ from langchain.schema import Document
 from pydantic import BaseModel
 
 class RedisProductRetriever(BaseRetriever, BaseModel):
+
     vectorstore: VectorStore
  
     class Config:

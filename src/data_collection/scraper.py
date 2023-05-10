@@ -9,7 +9,6 @@ class Scraper(Indexer):
         self.product_data_json = []
     
     def scrape(self):
-        print(self.pdp_urls)
         with concurrent.futures.ThreadPoolExecutor(max_workers=10) as executor:
             list(tqdm(executor.map(self.scrape_prod_info, self.pdp_urls), total=(len(self.pdp_urls))))
 

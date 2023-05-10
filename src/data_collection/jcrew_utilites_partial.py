@@ -1,5 +1,6 @@
 from selenium import webdriver
 from scrapy import Selector
+from selenium.webdriver.common.by import By
 from jcrew_xpaths import * 
 import time
 
@@ -30,9 +31,6 @@ class Jcrew_Utilities():
         self.sel = Selector(text=self.webdriver.page_source)
         self.curr_data['item_name'] = self.get_name()
         self.curr_data['description'] = self.get_details()
-        # if not self.sold_out():
-        #     self.curr_data['colors'] = self.get_price()
-        #     self.curr_data['price'] = self.get_colors()
         return self.curr_data
 
     def get_name(self):

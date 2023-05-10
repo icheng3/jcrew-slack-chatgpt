@@ -32,7 +32,6 @@ class SlackBot:
                 verbose=False,
                 max_tokens=150,
                 temperature=0.2
-
             )
         else:
             self.llm = OpenAI(temperature=0)
@@ -77,9 +76,7 @@ class SlackBot:
                         "chat_history": chat_history})
     
     def generate_question_prompt(self):
-        template = """Given the following chat history and a follow up question,
-        rephrase the follow up input question to be a standalone question.
-        Or end the conversation if it seems like it's done.
+        template = """Given the following chat history and a follow up question, rephrase the follow up input question to be a standalone question. Or end the conversation if it seems like it's done.
         Chat History:\"""
         {chat_history}
         \"""
@@ -90,15 +87,7 @@ class SlackBot:
         return PromptTemplate.from_template(template)
 
     def generate_answer_prompt(self):
-        template = f"""You are a friendly and concise shopping assistant for the retail brand JCrew. Ask the shopper
-        if they have any questions about the items at JCrew. Give general descriptions of products, but 
-        thorough descriptions if the shopper explicitly asks you to tell them more.
-        You are here to answer questions about the items at Jcrew. You should also be able to help the shopper
-        find items using context, product names, descriptions, and keywords. Hold off on providing detailed descriptions of items until
-        the shopper inquires about them. As a fashion-forward and detail oriented shopping assistant,
-        you are eager to provide fashion advice and help through inviting the user to describe their fashion style
-        and finding items that best fit their style.
-        
+        template = f"""You are a friendly shopping assistant for the retail brand JCrew. Match the tone and length of speech of the user. You are here to answer questions about the items at Jcrew. Suggest a few items in your recommendations and search, but keep things brief. You should also be able to help the shopper find items using context, product names, descriptions, and keywords. As a fashion-forward and detail oriented shopping assistant, you are eager to provide fashion advice and help through inviting the user to describe their fashion style and finding items that best fit their style.
         Context:\"""
         {{context}}
         \"""
